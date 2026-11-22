@@ -3,13 +3,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tachyon DAT Viewer</title>
-<link rel="stylesheet" href="./viewer.css">
-<script defer src="./viewer.js"></script>
+<link rel="stylesheet" href="./viewer.css?v=downloads">
+<script defer src="./viewer.js?v=downloads"></script>
 <main>
   <header>
     <h1>Tachyon DAT Viewer</h1>
     <p id="build" role="status">Загрузка сведений о сборке…</p>
-    <div id="downloads" class="controls"></div>
+    <details id="download-menu" hidden>
+      <summary>Скачать DAT</summary>
+      <div class="download-panel">
+        <p>Скачайте файл этой сборки или скопируйте постоянную HTTPS-ссылку для автообновления в 3x-ui.</p>
+        <div id="downloads"></div>
+      </div>
+    </details>
   </header>
   <section class="panel">
     <h2>Найти категорию по домену или IP</h2>

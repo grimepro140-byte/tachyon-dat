@@ -129,10 +129,25 @@ async function start() {
   const date = new Date(manifest.imported_at).toLocaleString('ru-RU');
   $('build').textContent = 'Сборка ' + manifest.id.slice(0, 8) + ' · ' + date;
   for (const [type, file] of Object.entries(manifest.files)) {
-    const save = button('Скачать ' + file.name, () => download(type, file, save));
+    const row = node('div', '', 'download-row');
+    const title = node('strong', file.name);
+    const url = node('input', '', 'download-url');
+    url.type = 'text';
+    url.readOnly = true;
+    url.value = file.release;
+    url.setAttribute('aria-label', 'Постоянная HTTPS-ссылка для ' + file.name);
+    url.addEventListener('click', () => url.select());
+    const actions = node('div', '', 'controls download-actions');
+    const save = button('Скачать файл', () => download(type, file, save));
     save.title = 'SHA-256 ' + file.sha256;
-    $('downloads').append(save, copyButton('HTTPS для 3x-ui · ' + type, file.release));
+    save.setAttribute('aria-label', 'Скачать ' + file.name);
+    const copy = copyButton('Копировать URL', file.release);
+    copy.setAttribute('aria-label', 'Копировать URL для ' + file.name);
+    actions.append(save, copy);
+    row.append(title, url, actions);
+    $('downloads').append(row);
   }
+  $('download-menu').hidden = false;
   for (const el of document.querySelectorAll('[data-kind]')) el.onclick = () => select(el.dataset.kind);
   $('filter').oninput = drawCategories;
   $('entry-filter').oninput = () => { offset = 0; drawEntries(); };

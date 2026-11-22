@@ -3,6 +3,19 @@
 body{margin:0;background:radial-gradient(ellipse at 85% 0,#352037,transparent 55%)}
 main{max-width:1440px;margin:auto;padding:clamp(14px,3vw,38px)}
 header{margin-bottom:22px}
+#download-menu summary{display:inline-flex;align-items:center;gap:12px;list-style:none;cursor:pointer;padding:9px 13px;border:1px solid var(--border);border-radius:6px;background:#2c1b33;font-weight:650}
+#download-menu summary::-webkit-details-marker{display:none}
+#download-menu summary::after{content:"";width:7px;height:7px;border:solid var(--accent);border-width:0 2px 2px 0;transform:translateY(-2px) rotate(45deg)}
+#download-menu[open] summary::after{transform:translateY(2px) rotate(225deg)}
+#download-menu summary:hover{border-color:var(--accent)}
+.download-panel{margin-top:8px;padding:14px;border:1px solid var(--border);border-radius:8px;background:#211727;max-width:980px}
+.download-panel p{font-size:13px}
+.download-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 8px;align-items:center}
+.download-row+.download-row{margin-top:12px}
+.download-row strong{grid-column:1/-1;font-size:13px}
+.download-url{width:100%;min-width:0;font:12px/1.5 monospace}
+.download-actions button{font-size:13px}
+@media(max-width:680px){.download-row{grid-template-columns:minmax(0,1fr)}}
 h1,h2,p{margin:0 0 12px}
 h1{font-size:clamp(28px,5vw,44px);letter-spacing:-.04em}
 h2{font-size:19px}
