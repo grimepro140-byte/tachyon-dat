@@ -23,10 +23,12 @@ nav{margin:14px 0}
 .workspace{display:grid;grid-template-columns:minmax(225px, 1fr) minmax(0, 2.6fr);gap:14px}
 aside input,#entry-filter{width:100%}
 #categories{margin-top:8px;max-height:65vh;overflow:auto}
-.category{width:100%;text-align:left;margin:0 0 4px;overflow-wrap:anywhere}
-.category small{display:block;line-height:1.4;margin-top:3px}
-.category .size{float:right;font-size:11px}
-.badge{border:1px solid currentColor;margin-left:6px;padding:1px 4px;border-radius:4px;font-size:10px}
+.category{width:100%;text-align:left;margin:0 0 4px;overflow-wrap:anywhere;color:#f8e6f1;font-weight:650}
+.category[aria-pressed=true]{background:#42243e;color:#ffedf7;border-color:#854d74;box-shadow:inset 3px 0 #ff9cc9}
+.category small{display:block;line-height:1.45;margin-top:4px;color:#d9bed5;font-weight:400}
+.category[aria-pressed=true] small{color:#f1dce9}
+.category .size{float:right;font-size:11px;color:#efcee4;margin-left:8px}
+.badge{display:inline-block;border:1px solid currentColor;background:#24172a;margin-left:6px;padding:0 4px;border-radius:4px;font-size:10px}
 .block{color:#ff9ba8}.direct{color:#95e7c3}.proxy{color:#bcb4ff}
 #entries{max-height:59vh;overflow:auto;padding-left:32px}
 #entries li{padding:7px 4px;border-bottom:1px solid var(--border);overflow-wrap:anywhere}
