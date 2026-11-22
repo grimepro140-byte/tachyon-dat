@@ -15,6 +15,10 @@ header{margin-bottom:22px}
 .download-row strong{grid-column:1/-1;font-size:13px}
 .download-url{width:100%;min-width:0;font:12px/1.5 monospace}
 .download-actions button{font-size:13px}
+.vds-install{margin-top:16px;padding-top:12px;border-top:1px solid var(--border)}
+.vds-install h2{font-size:15px}
+.vds-install button{font-size:13px}
+.vds-install pre{margin:0;padding:10px;overflow:auto;border:1px solid var(--border);border-radius:6px;background:#1a1323;font:12px/1.55 monospace}
 @media(max-width:680px){.download-row{grid-template-columns:minmax(0,1fr)}}
 h1,h2,p{margin:0 0 12px}
 h1{font-size:clamp(28px,5vw,44px);letter-spacing:-.04em}

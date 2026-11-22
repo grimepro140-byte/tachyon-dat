@@ -123,6 +123,27 @@ function readHash() {
   const [type, id] = location.hash.slice(1).split(':');
   select(type === 'geoip' ? 'geoip' : 'geosite', id, true);
 }
+function drawInstallCommand(files) {
+  const quote = value => "'" + value.replaceAll("'", "'\"'\"'") + "'";
+  const command = [
+    "bash <<'TACHYON_INSTALL'",
+    'set -eu',
+    'cd /usr/local/x-ui/bin',
+    'tmp=$(mktemp -d .tachyon-dat.XXXXXXXX)',
+    'trap \'rm -rf -- "$tmp"\' EXIT',
+    ...files.flatMap(({name, release}) => [
+      'curl -fsSL --retry 3 -o "$tmp"/' + quote(name) + ' ' + quote(release),
+      'curl -fsSL --retry 3 -o "$tmp"/' + quote(name + '.sha256') + ' ' + quote(release + '.sha256'),
+    ]),
+    '(cd "$tmp" && sha256sum -c -- ' + files.map(file => quote(file.name + '.sha256')).join(' ') + ')',
+    ...files.map(({name}) => 'chmod 644 "$tmp"/' + quote(name)),
+    ...files.map(({name}) => 'mv -fT -- "$tmp"/' + quote(name) + ' ' + quote(name)),
+    'TACHYON_INSTALL',
+    '',
+  ].join('\n');
+  $('install-command').textContent = command;
+  $('install-actions').append(copyButton('Копировать команду', command));
+}
 async function start() {
   const response = await fetch('./build.json', {cache:'no-cache'});
   if (!response.ok) throw Error('Нет опубликованной сборки');
@@ -148,6 +169,7 @@ async function start() {
     row.append(title, url, actions);
     $('downloads').append(row);
   }
+  drawInstallCommand(Object.values(manifest.files));
   $('download-menu').hidden = false;
   for (const el of document.querySelectorAll('[data-kind]')) el.onclick = () => select(el.dataset.kind);
   $('back-to-categories').onclick = () => {
