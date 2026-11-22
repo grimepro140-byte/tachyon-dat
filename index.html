@@ -3,8 +3,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tachyon DAT Viewer</title>
-<link rel="stylesheet" href="./viewer.css?v=downloads">
-<script defer src="./viewer.js?v=downloads"></script>
+<link rel="stylesheet" href="./viewer.css?v=viewport">
+<script defer src="./viewer.js?v=viewport"></script>
 <main>
   <header>
     <h1>Tachyon DAT Viewer</h1>
@@ -17,7 +17,7 @@
       </div>
     </details>
   </header>
-  <section class="panel">
+  <section class="panel search-panel">
     <h2>Найти категорию по домену или IP</h2>
     <form id="global" class="controls">
       <input id="query" required maxlength="253" aria-label="Домен, IP или CIDR" placeholder="youtube.com, 5.180.216.10 или 5.180.216">
@@ -36,6 +36,7 @@
       <div id="categories"></div>
     </aside>
     <section class="panel detail" id="detail">
+      <button type="button" id="back-to-categories">← К категориям</button>
       <div class="heading"><h2 id="title">Выберите категорию</h2><div class="controls" id="tools"></div></div>
       <input id="entry-filter" aria-label="Фильтр записей" placeholder="Поиск в категории…" hidden>
       <p id="count" role="status"></p>

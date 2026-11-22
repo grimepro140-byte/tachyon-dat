@@ -60,6 +60,7 @@ function drawCategories() {
 function select(nextKind, id = '', fromHash = false) {
   kind = nextKind;
   category = Object.hasOwn(manifest.categories[kind], id) ? id : '';
+  document.querySelector('.workspace').classList.toggle('has-category', Boolean(category));
   offset = 0;
   $('entry-filter').value = '';
   if (!fromHash) history.replaceState(null, '', '#' + kind + (category ? ':' + category : ''));
@@ -149,6 +150,10 @@ async function start() {
   }
   $('download-menu').hidden = false;
   for (const el of document.querySelectorAll('[data-kind]')) el.onclick = () => select(el.dataset.kind);
+  $('back-to-categories').onclick = () => {
+    select(kind);
+    $('filter').focus();
+  };
   $('filter').oninput = drawCategories;
   $('entry-filter').oninput = () => { offset = 0; drawEntries(); };
   $('prev').onclick = () => { offset -= pageSize; drawEntries(); };
