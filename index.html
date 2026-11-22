@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tachyon DAT Viewer</title>
+<link rel="stylesheet" href="./viewer.css">
+<script defer src="./viewer.js"></script>
+<main>
+  <header>
+    <h1>Tachyon DAT Viewer</h1>
+    <p id="build" role="status">Загрузка сведений о сборке…</p>
+    <div id="downloads" class="controls"></div>
+  </header>
+  <section class="panel">
+    <h2>Найти категорию по домену или IP</h2>
+    <form id="global" class="controls">
+      <input id="query" required maxlength="253" aria-label="Домен, IP или CIDR" placeholder="youtube.com, 5.180.216.10 или 5.180.216">
+      <button>Найти во всех категориях</button>
+    </form>
+    <p id="notice" role="status"></p>
+    <div id="matches"></div>
+  </section>
+  <nav class="controls" aria-label="Тип DAT">
+    <button data-kind="geosite">GeoSite · домены</button>
+    <button data-kind="geoip">GeoIP · подсети</button>
+  </nav>
+  <div class="workspace">
+    <aside class="panel">
+      <input id="filter" aria-label="Поиск категории" placeholder="Поиск категории…">
+      <div id="categories"></div>
+    </aside>
+    <section class="panel detail" id="detail">
+      <div class="heading"><h2 id="title">Выберите категорию</h2><div class="controls" id="tools"></div></div>
+      <input id="entry-filter" aria-label="Фильтр записей" placeholder="Поиск в категории…" hidden>
+      <p id="count" role="status"></p>
+      <ol id="entries"></ol>
+      <div id="pager" class="controls" hidden><button id="prev">← Назад</button><span id="range"></span><button id="next">Далее →</button></div>
+    </section>
+  </div>
+</main>
+</html>
